@@ -1,0 +1,86 @@
+.login-btn{
+	border-bottom: 3px solid black;
+	padding-bottom: 10px;
+}
+
+/* logout */
+.logout{
+	display: block;
+	text-align: center;
+	font-size: 25px;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-weight: lighter;
+}
+.logout a{
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+.login{
+    margin-top: 120px;
+    margin-bottom: 40px;
+    min-height: 380px;
+}
+.login h1{
+	width: 80%;
+	margin: auto;
+	font-size: 50px;
+	margin-bottom: 40px;
+}
+.login form{
+    width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: none;
+}
+.form-group{
+	margin-top: 10px;
+}
+.login form input{
+    padding: 15px;
+    width: 100%;
+    border: none;
+    background-color: #ededed;
+}
+.login form li, .text-muted{
+    list-style: none;
+    font-size: 10px;
+    color: #636363;
+    display: block;
+    margin-left: 10px;
+}
+.login form button{
+    padding: 15px 20px;
+    border: 1px solid #111;
+	background-color: white;
+    font-size: 15px;
+    margin-top: 20px;
+    transition: .2s;
+	cursor: pointer;
+}
+.login form button:hover{
+    background-color: #111;
+    color: white;
+    transition: .2s;
+}
+.login .extra{
+    width: 400px;
+    font-size: 15px;
+    margin: auto;
+}
+.login .extra p{
+    display: inline;
+}
+.login .extra a{
+    color: #111;
+    font-weight: bolder;
+    display: inline;
+    font-size: 15px;
+    text-decoration: none;
+}
+.login form label{
+    margin-right: 10px;
+}

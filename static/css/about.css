@@ -1,0 +1,59 @@
+.container{
+	height: 125vh;
+	width: 100%;
+	margin-top: 70px;
+	padding-bottom: 70px;
+}
+.container .about-heading{
+	font-size: 45px;
+	text-align: left;
+	width: 70%;
+	margin: auto;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.container p{
+	width: 70%;
+	margin: auto;
+	font-size: 14px;
+}
+.inner-container{
+	width: 70%;
+	margin: auto;
+	display: grid;
+	grid-column-gap: 40px;
+	grid-template-columns: 1fr 1fr;
+	grid-auto-rows: minmax(40vh, auto);
+}
+.location{
+	margin-top: 70px;
+}
+.contact{
+	margin-top: 70px;
+}
+#info{
+	border: 0.01cm solid lightgray;
+}
+.container .location h1{
+	display: inline;
+}
+.container .contact h1{
+	display: inline;
+}
+.container .inner-container #info{
+	padding: 50px;
+}
+.container #info i{
+	font-size: 60px;
+	margin-right: 20px;
+}
+.container .location p{
+	margin-right: 0px;
+	margin-left: 0px;
+	font-weight: bolder;
+}
+.container .contact p{
+	margin-right: 0px;
+	margin-left: 0px;
+	font-weight: bolder;
+}

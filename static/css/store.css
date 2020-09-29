@@ -1,0 +1,220 @@
+.home-btn{
+	border-bottom: 3px solid black;
+	padding-bottom: 10px;
+}
+
+/* showcase */
+.parallax-window-1 {
+	margin-top: 70px;
+    height: 95vh;
+    background: transparent;
+	background-position: top;
+	background-repeat: no-repeat;
+}
+.parallax-window-1 > .showcase-text{
+	width: 700px;
+	height: 400px;
+	position: relative;
+	top: 65%;
+	left: 30%;
+	transform: translate(-30%, -50%);
+}
+.showcase-text h1{
+	font-size: 50px;
+	text-shadow: 3px 3px 1px lightgray;
+	margin-left: -3px;
+}
+.showcase-text p{
+	font-size: 15px;
+	margin-bottom: 25px;
+}
+.showcase-btn{
+	text-decoration: none;
+	color: black;
+	border: 1px solid black;
+	padding: 13px;
+	margin-top: 20px;
+	transition: .5s;
+}
+.showcase-btn:hover{
+	background-color: rgba(0, 0, 0, 0.8);
+	transition: .5s;
+	color: white;
+}
+
+
+/* on sells */
+.sells{
+	height: 570px;
+	background-color: white;
+}
+.sells h1{
+	font-size: 50px;
+	margin: 45px;
+}
+
+/* carosol */
+.carosol{
+	height: 370px;
+}
+.carosol .carosol-container{
+	width: 90%;
+	margin: auto;
+	height: 100%;
+	overflow: hidden;
+}
+.carosol .carosol-container-inner{
+	margin-top: 10px;
+	height: 100%;
+	transition: .5s;
+}
+#arrow{
+	display: inline;
+	cursor: pointer;
+}
+#arrow img{
+	height: 40px;
+	width: 40px;
+}
+.left{
+	position: relative;
+	top: -170px;
+	margin-left: 15px;
+}
+.right{
+	position: relative;
+	top: -170px;
+	float: right;
+	margin-right: 15px;
+}
+.item{
+	height: 350px;
+	width: 250px;
+	margin-right: 30px;
+	float: left;
+	background-color: white;
+}
+.item img{
+	height: 250px;
+	width: 250px;
+}
+.add-to-cart-btn{
+	font-size: 13px;
+	text-decoration: none;
+	color: #6B6B6B;
+	padding: 13px;
+	background-color: #EDEDED;
+	font-family: 'Arial', sans-serif;
+	transition: .3s;
+}
+.view-product{
+	font-size: 13px;
+	text-decoration: none;
+	color: #6B6B6B;
+	padding: 13px;
+	background-color: #EDEDED;
+	font-family: 'Arial', sans-serif;
+	transition: .3s;
+}
+.product-name{
+	color: #404040;
+	font-size: 15px;
+	margin-bottom: 23px;
+	margin-top: 10px;
+}
+.product-price{
+	color: #404040;
+	float: right;
+	margin-right: 10px;
+}
+#item-btn:hover{
+	background-color: #111;
+ 	color: white;
+	transition: .3s;
+	cursor: pointer;
+}
+
+
+
+/* brands */
+.parallax-window-2 {
+    height: 50vh;
+    background: rgba(0, 0, 0, 0.6);
+	background-position: top;
+}
+.parallax-window-2 > .showcase-text-2{
+	text-align: center;
+	width: 80%;
+	height: 200px;
+	position: relative;
+	top: 50%;
+	left: 30%;
+	transform: translate(-50%, -30%);
+	color: white;
+	margin-left: 20%;
+}
+.showcase-text-2 h1{
+	font-size: 50px;
+}
+.showcase-text-2 p{
+	font-size: 15px;
+	margin-bottom: 25px;
+}
+.showcase-btn-2{
+	text-decoration: none;
+	color: white;
+	border: 1px solid white;
+	padding: 13px;
+	margin-top: 20px;
+	transition: .5s;
+}
+.showcase-btn-2:hover{
+	border: 1px solid white;
+	background-color: white;
+	transition: .5s;
+	color: black;
+}
+
+
+/* products */
+.products{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background-color: white;
+}
+.products h1{
+	font-size: 50px;
+	margin: 45px;
+}
+.product-container{
+	width: 90%;
+	height: 100%;
+	margin-left: 8%;
+	margin-bottom: 60px;
+}
+.product-container .item{
+	margin-left: 10px;
+	margin-top: 30px;
+}
+
+/* paginator */
+.pagination{
+	text-align: center;
+}
+.show-more{
+	width: 100px;
+	margin: auto;
+	text-decoration: none;
+	text-align: center;
+	color: black;
+	background-color: white;
+	padding: 13px;
+	border: 1px solid black;
+	transition: .3s;
+}
+.show-more:hover{
+	background-color: black;
+	color: white;
+	transition: .3s;
+}
