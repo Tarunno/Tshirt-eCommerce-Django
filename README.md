@@ -5,7 +5,8 @@
 #### 2. add product to your cart without login by using cookies.
 #### 3. customizable cart.
 #### 4. admin can add, delete and update products.
-#### 5. Search products and see products based on category.
+#### 5. Rating and reviewing products.
+#### 6. Search products and see products based on category.
 
 ## Home page:
 ![](GIF/home.gif)
