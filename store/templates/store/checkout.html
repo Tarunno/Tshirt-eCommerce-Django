@@ -1,0 +1,46 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<div class="container">
+	<h1 class="checkout-heading">Checkout</h1>
+	<div class="inner-container">
+		<div class="inner-container-part">
+			<h3>Client information</h3>
+			<input type="text" placeholder="Name">
+			<input type="text" placeholder="Email">
+			<h3>Shipping information</h3>
+			<input type="text" placeholder="Address">
+			<input type="text" placeholder="City">
+			<input type="text" placeholder="Zip">
+			<input type="text" placeholder="State">
+		</div>
+		<div class="inner-container-part">
+			<div class="checkout-index">
+				<h2>Checkout summary</h2><br>
+				<h3>Number of items: <span id="number">{{ order.get_cart_total_item }}</span></h3>
+				<h3>Total price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ order.get_cart_total}}</span></h3>
+				<button class="continue-btn" type="button" name="button">Continue</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var sections = document.querySelectorAll('.inner-container-part');
+	if(user == "AnonymousUser"){
+		sections.forEach((section) => {
+			section.style.display = 'none';
+			document.querySelector('.inner-container').innerHTML = `
+			<div class="inner-container-part">
+				<div class="checkout-index">
+					<h2>Checkout summary</h2><br>
+					<h3>Number of items: <span id="number">{{ order.get_cart_total_item }}</span></h3>
+					<h3>Total price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ order.get_cart_total}}</span></h3>
+					<button class="continue-btn" type="button" name="button">Login</button>
+				</div>
+			</div>
+			`;
+		});
+	}
+</script>
+{% endblock body %}

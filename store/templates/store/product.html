@@ -1,0 +1,74 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+<h1>Product</h1>
+	<div class="product">
+		<div class="product-container">
+				<div class="item">
+					<img src={{ product.image.url }}>
+					<h3 class="product-name"> {{ product.name }}</h3>
+					{% if product.on_stock %}
+						<h3 class="product-stock"><i class="fas fa-cubes"></i> In Stock</h3>
+					{% else %}
+						<h3 class="product-stock"><i class="fas fa-cubes"></i> Out of Stock</h3>
+					{% endif %}
+					{% if product.delivery %}
+						<h3 class="product-shipping"><i class="fas fa-shipping-fast"></i> Free</h3>
+					{% else %}
+						<h3 class="product-shipping"><i class="fas fa-shipping-fast"></i> Charges applies</h3>
+					{% endif %}
+					<h3 class="product-date"><i class="far fa-calendar-alt"></i> {{ product.date | date:"D d m Y" }}</h3>
+					<h2 class="rating" data-rating={{rating}}>
+					</h2><p style="display:inline;"> <i style="font-size:13px;" class="fas fa-user"> </i> {{ rated }}</p>
+					<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+						 The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+					<h3 class="product-price"><i class="fas fa-dollar-sign"></i>{{ product.price }}</h3>
+					<a data-product={{product.id}} data-action="add" id="item-btn" class="add-to-cart-btn update-cart">Add to cart</a>
+				</div>
+		</div>
+	</div>
+	{% if user.is_authenticated %}
+	<div class="rating-update">
+		<h2>Rate this product</h2>
+		<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+		{% if user.is_authenticated %}
+			<select class="rating-select">
+				<option value="0"> 0 </option>
+				<option value="1"> 1 </option>
+				<option value="2"> 2 </option>
+				<option value="3"> 3 </option>
+				<option value="4"> 4 </option>
+				<option value="5"> 5 </option>
+			</select>
+			<button type="button" data-user="{{user.id}}" data-product="{{product.id}}" class="rating-submit"> Rate </button>
+		{% else %}
+			<h3>Please login to add review</h3>
+		{% endif %}
+	</div>
+	<div class="reviews">
+		<h2>Leave a review of this product</h2>
+		<p>Content of a page when looking at its layout is a long established fact that a reader will
+			 be distracted by the readable content of a page when looking at its layout.</p>
+		<h3>{{reviews.count}} reviews</h3>
+		{% if user.is_authenticated %}
+			<input type="text" placeholder="review..." class="review-text">
+			<button type="button" data-product={{product.id}} data-action="add" class="review-submit"> Submit </button>
+		{% else %}
+			<h3>Please login to add review</h3>
+		{% endif %}
+		{% for review in reviews %}
+			<div class="review">
+				<h4 style="display:inline;"><i style="transform: rotate(-40deg);" class="fas fa-thumbtack"></i> {{ review.user.customer.name }} </h4>
+				{% if review.user.id == user.id %}
+					<p style="display:inline; cursor:pointer; border:none; padding:2px; color: red;"  data-product={{product.id}} data-action="delete" data-review={{review.id}} class="review-submit"> <i id="delete-btn" class="fas fa-trash-alt"></i></p>
+				{% endif %}
+				<h6 style="color:gray;">{{ review.date | date:"D d m Y" }}</h6>
+				<h5>{{ review.review }}</h5>
+			</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+	<script src="{% static 'js/product.js' %}" charset="utf-8"></script>
+{% endblock body %}

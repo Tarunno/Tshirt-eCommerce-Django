@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="icon" sizes="16x16" type="image/png" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css"  />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>ShopTarunno | {{ title }}</title>
+    {% else %}
+        <title>ShopTarunno | Store</title>
+    {% endif %}
+
+
+    <script>
+        var user = "{{request.user}}";
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getToken('csrftoken');
+
+        function getCookie(name) {
+		    var cookieArr = document.cookie.split(";");
+
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+
+		        if(name == cookiePair[0].trim()) {
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+		    return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			console.log('Cart Created!', cart)
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+		console.log('Cart:', cart)
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src={% static 'img/logo.svg' %} alt="logo">
+        </div>
+        <div class="search">
+            <input type="text" name="search">
+        </div>
+        <div style="cursor: pointer;" class="search-btn"><i class="fas fa-search"></i></div>
+        <script>
+            var search_btn = document.querySelector('.search-btn');
+            search_btn.addEventListener('click', function(){
+                var query = document.querySelector('.search input').value;
+                window.location.replace('/search/'+query);
+            });
+        </script>
+        <nav>
+            <ul>
+                <li class="home-btn"><a href="{% url 'store' %}">Store</a></li>
+                <li class="category-btn">Category
+                    <div class="categories">
+                        <div class="categories-container">
+                            <ul>
+                                {% for category in categories %}
+                                    <li class="category-options"><a href="../category/{{category.id}}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="logout-btn">Logout</li>
+                    <script type="text/javascript">
+                        var logout_btn = document.querySelector('.logout-btn');
+                        logout_btn.addEventListener('click', function(){
+                            var body = document.body;
+                            var log_container = document.createElement('div');
+                            log_container.setAttribute('class', 'logout_container');
+                            var log = document.createElement('div');
+                            log.setAttribute('class', 'logout_window');
+
+                            log.innerHTML = `
+                                <h3>Are you sure want to logout?</h3>
+                                <a class="logout-btn-inner" href="{% url 'logout' %}"> Logout </a>
+                            `;
+
+                            log_container.appendChild(log);
+                            body.appendChild(log_container);
+
+                            document.querySelector('.logout_container').addEventListener('click', function(){
+                                document.body.removeChild(log_container);
+                            });
+                        });
+                    </script>
+                {% else %}
+                    <li><a class="login-btn" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+                <li><a class="signup-btn" href="{% url 'signup' %}">Signup</a></li>
+            </ul>
+            <div class="cart-icon">
+                <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"><p class="cart-number">{{ order.get_cart_total_item }}</p></i></a>
+            </div>
+        </nav>
+    </header>
+    {% block body %}
+    {% endblock body %}
+    <div class="footer">
+        <img src="{% static 'img/logo2.svg' %}" alt="logo">
+        <div class="footer-text">
+            <h3>ShopTarunno.com | 2020</h3><br><br>
+            <hr><br>
+            <p>It is a long established fact that a reader will be distracted by
+                the readable content of a page when looking at its layout. The point of using Lorem
+                readable content of a page when looking at its layout.
+            </p>
+        </div>
+        <div class="contacts">
+            <i class="fab fa-facebook-f"></i> <p>www.facebook.com/st_shop</p><br>
+            <i class="fab fa-twitter"></i> <p>www.twitter.com/stshop_bd</p><br>
+            <i class="fas fa-envelope"></i> <p>www.twitter.com/stshop_bd</p><br>
+            <i class="fab fa-instagram"></i> <p>@ShopTarunno_bd</p><br>
+        </div>
+    </div>
+</body>
+</html>

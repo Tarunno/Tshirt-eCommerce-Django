@@ -1,0 +1,35 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/category.css' %}">
+<h1>Products</h1>
+	<div class="products">
+		<div class="product-container">
+			{% for product in products %}
+				<div class="item">
+					<img src={{ product.image.url }}>
+					<h3 class="product-name"> {{ product.name }}</h3>
+					<a data-product={{product.id}} data-action="add" id="item-btn" class="add-to-cart-btn update-cart">Add to cart</a>
+					<a id="item-btn" class="view-product" href="../../product/{{product.id}}">View</a>
+					<h3 class="product-price"><i class="fas fa-dollar-sign"></i>{{ product.price }}</h3>
+				</div>
+			{% endfor %}
+		</div>
+
+		<!-- PAGINATION -->
+	    <div class="pagination">
+	        <span class="step-links">
+		        {% if products.has_next %}
+		            <a class="show-more" href="?page={{ products.next_page_number }}">Show more</a>
+		        {% endif %}
+	        </span>
+	    </div>
+	</div>
+	<script>
+		var links = document.querySelectorAll('.category-options a');
+		links.forEach((link) => {
+			link.href = link.href.replace('category/', '');
+		});
+	</script>
+	<script src="{% static 'js/product.js' %}" charset="utf-8"></script>
+{% endblock body %}
