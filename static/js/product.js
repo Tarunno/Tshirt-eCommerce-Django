@@ -1,3 +1,25 @@
+// Rating
+var rating_star = document.querySelector('.rating');
+var rating = Number(rating_star.dataset.rating);
+var int_rating = parseInt(rating);
+var fraction = rating - int_rating;
+for(let i=1; i<=int_rating; i++){
+	rating_star.innerHTML += '<i class="fas fa-star"></i>';
+}
+if(fraction >= 0.5){
+	rating_star.innerHTML += '<i class="fas fa-star-half-alt"></i>';
+	int_rating++;
+}
+for(let i=int_rating+1; i<=5; i++){
+	rating_star.innerHTML += '<i class="far fa-star"></i>';
+}
+
+// location navigation
+var links = document.querySelectorAll('.category-options a');
+links.forEach((link) => {
+	link.href = link.href.replace('product/', '');
+});
+
 // CART //
 var update_cart_btn = document.querySelectorAll('.update-cart');
 update_cart_btn.forEach((btn) => {
@@ -91,22 +113,6 @@ document.querySelector('.rating-submit').addEventListener('click', function(){
 });
 
 
-// Rating
-var rating_star = document.querySelector('.rating');
-var rating = Number(rating_star.dataset.rating);
-var int_rating = parseInt(rating);
-var fraction = rating - int_rating;
-for(let i=1; i<=int_rating; i++){
-	rating_star.innerHTML += '<i class="fas fa-star"></i>';
-}
-if(fraction >= 0.5){
-	rating_star.innerHTML += '<i class="fas fa-star-half-alt"></i>';
-	int_rating++;
-}
-for(let i=int_rating+1; i<=5; i++){
-	rating_star.innerHTML += '<i class="far fa-star"></i>';
-}
-
 
 //review
 var review_btn = document.querySelectorAll('.review-submit');
@@ -165,10 +171,4 @@ review_btn.forEach((submit) => {
 		}
 	});
 
-});
-
-
-var links = document.querySelectorAll('.category-options a');
-links.forEach((link) => {
-	link.href = link.href.replace('product/', '');
 });
