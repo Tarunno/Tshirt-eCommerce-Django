@@ -199,7 +199,11 @@ def checkout(request):
     }
     return render(request, 'store/checkout.html', context)
 
-
+def order_placed(request):
+    order = Order.objects.get(customer=request.user.customer)
+    order.order_placed = True
+    order.save()
+    return JsonResponse("order placed", safe=False)
 
 def about(request):
     categories = Category.objects.all()
