@@ -27,6 +27,50 @@
 			{% endfor %}
 		</div>
 	</div>
+	{% if user.is_authenticated %}
+		<div class="my-order">
+			<h1> Order status</h1>
+			<h4>Please receive your order when all steps are complete. We will shortly connect with you.</h4>
+			<div class="my-order-inner">
+				{% if order.order_placed %}
+					<div class="icon-active">
+						<img src="{% static 'img/gift0.svg' %}">
+					</div><p class="line-active">------------------</p>
+				{% else %}
+					<div class="icon">
+						<img src="{% static 'img/gift.svg' %}">
+					</div><p class="line">------------------</p>
+				{% endif %}
+				{% if order.order_packed %}
+					<div class="icon-active">
+						<img src="{% static 'img/box0.svg' %}">
+					</div><p class="line-active">----------------</p>
+				{% else %}
+					<div class="icon">
+						<img src="{% static 'img/box.svg' %}">
+					</div><p class="line">----------------</p>
+				{% endif %}
+				{% if order.order_shipping %}
+					<div class="icon-active">
+						<img src="{% static 'img/truck0.svg' %}">
+					</div><p class="line-active">----------------</p>
+				{% else %}
+					<div class="icon">
+						<img src="{% static 'img/truck.svg' %}">
+					</div><p class="line">----------------</p>
+				{% endif %}
+				{% if order.order_shipped %}
+					<div class="icon-active">
+						<img src="{% static 'img/shipped0.svg' %}">
+					</div>
+				{% else %}
+					<div class="icon">
+						<img src="{% static 'img/shipped.svg' %}">
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
 </div>
 <script type="text/javascript" src="{% static 'js/cart.js' %}">
 
