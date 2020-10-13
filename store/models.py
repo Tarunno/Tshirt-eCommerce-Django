@@ -64,6 +64,10 @@ class Order(models.Model):
     date = models.DateTimeField(default=timezone.now)
     complete = models.BooleanField(default=False, null=True, blank=True)
     transaction_id = models.CharField(max_length=200, null=True, blank=True)
+    order_placed = models.BooleanField(default = False, null=True, blank=True)
+    order_packed = models.BooleanField(default = False, null=True, blank=True)
+    order_shipping = models.BooleanField(default = False, null=True, blank=True)
+    order_shipped = models.BooleanField(default = False, null=True, blank=True)
 
     def __str__(self):
         return 'Order ID : ' +  str(self.id)
