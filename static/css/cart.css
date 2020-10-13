@@ -78,3 +78,49 @@
 	color: green;
 	cursor: pointer;
 }
+.my-order{
+	display: block;
+	width: 70%;
+	margin: auto;
+	padding-top: 60px;
+}
+.my-order h1{
+	font-size: 39px;
+}
+.my-order-inner{
+	display: flex;
+	width: 100%;
+	margin: 30px auto;
+	width: 670px;
+}
+.my-order .icon{
+	padding: 10px;
+	border: 2px solid #111;
+	border-radius: 40px;
+	display: inline-block;
+}
+.my-order .icon-active{
+	padding: 10px;
+	border: 2px solid #38db2c;
+	border-radius: 40px;
+	display: inline-block;
+}
+.my-order img{
+	height: 50px;
+	width: 50px;
+	display: inline-flex;
+	color: green;
+}
+.my-order p{
+	display: inline;
+	padding: -20px;
+	line-height: 67px;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+.my-order .line-active{
+	color: #38db2c
+}
+.my-order h4{
+	margin: 10px 0px;
+}
