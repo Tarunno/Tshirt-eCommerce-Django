@@ -21,3 +21,5 @@
 #### 1. Django
 #### 2. JSON
 #### 3. SQLite3 database
+
+# Super user: Tshirt
