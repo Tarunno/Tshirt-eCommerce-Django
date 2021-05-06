@@ -44,7 +44,7 @@ class Product(models.Model):
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     rating = models.IntegerField(default=0, null=True, blank=True)
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.product)

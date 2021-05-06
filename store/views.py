@@ -132,8 +132,7 @@ def rating_update(request):
         product = Product.objects.get(id=productID)
         user = User.objects.get(id=user)
         rating = int(data['rating'])
-        exist = Rating.objects.filter(user=user, product=product).count()
-        if exist > 0:
+        if Rating.objects.filter(user=user, product=product).exists() > 0:
             rated = Rating.objects.get(user=user, product=product)
             rated.rating = rating
             rated.save()

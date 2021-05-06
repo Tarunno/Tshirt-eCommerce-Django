@@ -50,7 +50,9 @@
 }
 .sells h1{
 	font-size: 50px;
-	margin: 45px;
+	margin: 30px;
+	text-align: center;
+	margin-top: 40px;
 }
 
 /* carosol */
@@ -136,7 +138,7 @@
 
 
 
-/* brands */
+/* build Tshirt */
 .parallax-window-2 {
     height: 50vh;
     background: rgba(0, 0, 0, 0.6);
@@ -180,23 +182,43 @@
 .products{
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	gap: 40px;
+	align-items: center;
+	width: 100%;
 	height: 100%;
 	background-color: white;
 }
 .products h1{
 	font-size: 50px;
-	margin: 45px;
+	margin-top: 40px;
 }
 .product-container{
-	width: 90%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 20px;
 	height: 100%;
-	margin-left: 8%;
-	margin-bottom: 60px;
+	width: 90%;
+	margin: auto;
 }
-.product-container .item{
-	margin-left: 10px;
-	margin-top: 30px;
+.product-container .item-products{
+	margin: 0px;
+	min-height: 350px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
+.item-products .product-image{
+	height: 100%;
+	width: 100%;
+}
+.item-products .product-actions{
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	align-items: flex-end;
+}
+
 
 /* paginator */
 .pagination{

@@ -7,8 +7,8 @@
 	<div class="parallax-window-1" data-parallax="scroll" data-image-src="{% static 'img/showcase.svg' %}">
 		<div class="showcase-text">
 			<h1>Shop The Best Tshirts</h1>
-			<p>It is a long established fact that a reader will be distracted
-			by the readable content of a page when looking at its layout.</p>
+			<p>We are selling cool Tshirt for you and your loved one. You can check out our cool Tshirts here.
+			or can visit our showrooms! </p>
 			<a class="showcase-btn" href="{% url 'about' %}"> Know more </a>
 		</div>
 	</div>
@@ -34,23 +34,24 @@
 	</div>
 	<div class="parallax-window-2" data-parallax="scroll" data-image-src="{% static 'img/brands_showcase.jpg' %}">
 		 <div class="showcase-text-2">
-			<h1>Thousands Of Brands To Chose Form</h1>
-			<p>It is a long established fact that a reader will be distracted
-			by the readable content of a page when looking at its layout. The point of using
-			Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-			<a class="showcase-btn-2" href="">  Order Now </a>
+			<h1>Build Custom Tshirts</h1>
+			<p>You can give us your design and we will bulid your awasome tshirt for you!</p>
+			<a class="showcase-btn-2" href=""> Build Now </a>
 		</div>
 	</div>
 	<div class="products">
 		<h1>Products</h1>
 		<div class="product-container">
 			{% for product in products %}
-				<div class="item">
-					<img src={{ product.image.url }}>
+				<div class="item-products">
+					<div class="product-image" style="background: url({{ product.image.url }}) no-repeat center center / cover;">
+					</div
 					<h3 class="product-name"> {{ product.name }}</h3>
-					<a data-product={{product.id}} data-action="add" id="item-btn" class="add-to-cart-btn update-cart">Add to cart</a>
-					<a id="item-btn" class="view-product" href="../../product/{{product.id}}">View</a>
-					<h3 class="product-price"><i class="fas fa-dollar-sign"></i>{{ product.price }}</h3>
+					<div class="product-actions">
+						<a data-product={{product.id}} data-action="add" id="item-btn" class="add-to-cart-btn update-cart">Add to cart</a>
+						<a id="item-btn" class="view-product" href="../../product/{{product.id}}">View</a>
+						<h3 class="product-price"><i class="fas fa-dollar-sign"></i>{{ product.price }}</h3>
+					</div>
 				</div>
 			{% endfor %}
 		</div>

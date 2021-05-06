@@ -12,8 +12,6 @@
     {% else %}
         <title>ShopTarunno | Store</title>
     {% endif %}
-
-
     <script>
         var user = "{{request.user}}";
 
@@ -55,8 +53,6 @@
 		}
 		console.log('Cart:', cart)
     </script>
-
-
 </head>
 <body>
     <header>
@@ -114,8 +110,8 @@
                     </script>
                 {% else %}
                     <li><a class="login-btn" href="{% url 'login' %}">Login</a></li>
+                    <li><a class="signup-btn" href="{% url 'signup' %}">Signup</a></li>
                 {% endif %}
-                <li><a class="signup-btn" href="{% url 'signup' %}">Signup</a></li>
             </ul>
             <div class="cart-icon">
                 <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"><p class="cart-number">{{ order.get_cart_total_item }}</p></i></a>
