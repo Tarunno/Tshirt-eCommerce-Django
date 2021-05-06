@@ -1,5 +1,6 @@
 var update_btn = document.querySelectorAll('.update-item');
 
+
 update_btn.forEach((btn) => {
 	btn.addEventListener('click', function(){
 		var productID = this.dataset.product;

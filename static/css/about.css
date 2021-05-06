@@ -5,7 +5,7 @@
 	padding-bottom: 70px;
 }
 .container .about-heading{
-	font-size: 45px;
+	font-size: 50px;
 	text-align: left;
 	width: 70%;
 	margin: auto;
@@ -56,4 +56,32 @@
 	margin-right: 0px;
 	margin-left: 0px;
 	font-weight: bolder;
+}
+@media screen and (max-width: 895px) {
+	.container{
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		padding: 0px;
+		width: 95%;
+		justify-content: center;
+		align-items: center;
+		margin: 50px auto;
+	}
+	.container .about-heading{
+		width: 95%;
+		padding-top: 50px;
+		padding-bottom: 30px;
+	}
+	.container p{
+		width: 95%;
+	}
+	.inner-container{
+		width: 95%;
+		grid-column-gap: 0px;
+		grid-template-columns: 1fr;
+	}
+	.container .inner-container #info{
+		padding: 20px;
+	}
 }

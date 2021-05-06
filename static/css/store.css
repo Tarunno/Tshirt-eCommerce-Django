@@ -10,14 +10,12 @@
     background: transparent;
 	background-position: top;
 	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .parallax-window-1 > .showcase-text{
-	width: 700px;
-	height: 400px;
-	position: relative;
-	top: 65%;
-	left: 30%;
-	transform: translate(-30%, -50%);
+	padding: 20px;
 }
 .showcase-text h1{
 	font-size: 50px;
@@ -57,7 +55,7 @@
 
 /* carosol */
 .carosol{
-	height: 370px;
+	height: auto;
 }
 .carosol .carosol-container{
 	width: 90%;
@@ -73,6 +71,10 @@
 #arrow{
 	display: inline;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
 }
 #arrow img{
 	height: 40px;
@@ -80,12 +82,12 @@
 }
 .left{
 	position: relative;
-	top: -170px;
+	top: -195px;
 	margin-left: 15px;
 }
 .right{
 	position: relative;
-	top: -170px;
+	top: -195px;
 	float: right;
 	margin-right: 15px;
 }
@@ -239,4 +241,49 @@
 	background-color: black;
 	color: white;
 	transition: .3s;
+}
+
+@media screen and (max-width: 895px) {
+	.left{
+		margin-left: -11px;
+	}
+	.left img{
+		background-color: white;
+		padding: 10px;
+	}
+	.right{
+		background-color: white;
+		margin-right: -2px;
+	}
+	.product-container{
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.carosol{
+		width: 97%;
+		margin: auto;
+	}
+	.carosol .carosol-container{
+		width: 100%;
+		margin: auto;
+		height: 100%;
+	}
+	.parallax-window-1 {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 625px) {
+	.product-container{
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media screen and (max-width: 565px) {
+	.product-container{
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.product-container .item-products{
+		min-height: 450px;
+	}
+	.parallax-window-2 {
+	    height: 100vh;
+	}
 }

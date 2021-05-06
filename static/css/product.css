@@ -144,3 +144,29 @@ h1{
 .review{
 	padding: 16px 0px;
 }
+
+@media screen and (max-width: 500px) {
+	h1{
+		width: 95%;
+	}
+	.product{
+		width: 95%;
+	}
+	.item{
+		margin-top: 20px;
+		min-height: 60vh;
+	}
+	.item img{
+		float: left;
+		height: auto;
+		width: 100%;
+		margin-right: 30px;
+	}
+	.rating-update{
+		width: 95%;
+		margin-top: 30px;
+	}
+	.reviews{
+		width: 95%;
+	}
+}

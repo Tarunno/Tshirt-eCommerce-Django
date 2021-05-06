@@ -176,6 +176,12 @@ def cart(request):
     order = data['order']
     items = data['items']
 
+    if order.complete:
+        orders = order.orderitem_set.all()
+        for i in orders:
+            i.delete()
+        order.delete()
+
     context = {
         'order': order,
         'items': items,

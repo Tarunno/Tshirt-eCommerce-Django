@@ -20,7 +20,7 @@
 				<h2>Checkout summary</h2><br>
 				<h3>Number of items: <span id="number">{{ order.get_cart_total_item }}</span></h3>
 				<h3>Total price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ order.get_cart_total}}</span></h3>
-				<button class="continue-btn" type="button" name="button">Continue</button>
+				<a href="{% url 'order_placed' %}"><button class="continue-btn" type="button" name="button">Continue</button></a>
 			</div>
 		</div>
 	</div>

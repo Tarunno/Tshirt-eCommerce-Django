@@ -22,7 +22,7 @@
 .login{
     margin-top: 120px;
     margin-bottom: 40px;
-    min-height: 380px;
+    min-height: 300px;
 }
 .login h1{
 	width: 80%;
@@ -31,7 +31,7 @@
 	margin-bottom: 40px;
 }
 .login form{
-    width: 400px;
+    width: 300px;
     margin: auto;
     padding: 20px;
     border: none;
@@ -41,7 +41,7 @@
 }
 .login form input{
     padding: 15px;
-    width: 100%;
+    width: 92%;
     border: none;
     background-color: #ededed;
 }
@@ -67,7 +67,7 @@
     transition: .2s;
 }
 .login .extra{
-    width: 400px;
+    width: 300px;
     font-size: 15px;
     margin: auto;
 }

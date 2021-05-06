@@ -56,67 +56,155 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src={% static 'img/logo.svg' %} alt="logo">
-        </div>
-        <div class="search">
-            <input type="text" name="search">
-        </div>
-        <div style="cursor: pointer;" class="search-btn"><i class="fas fa-search"></i></div>
-        <script>
-            var search_btn = document.querySelector('.search-btn');
-            search_btn.addEventListener('click', function(){
-                var query = document.querySelector('.search input').value;
-                window.location.replace('/search/'+query);
-            });
-        </script>
-        <nav>
-            <ul>
-                <li class="home-btn"><a href="{% url 'store' %}">Store</a></li>
-                <li class="category-btn">Category
-                    <div class="categories">
-                        <div class="categories-container">
-                            <ul>
-                                {% for category in categories %}
-                                    <li class="category-options"><a href="../category/{{category.id}}">{{ category.name }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                {% if user.is_authenticated %}
-                    <li class="logout-btn">Logout</li>
-                    <script type="text/javascript">
-                        var logout_btn = document.querySelector('.logout-btn');
-                        logout_btn.addEventListener('click', function(){
-                            var body = document.body;
-                            var log_container = document.createElement('div');
-                            log_container.setAttribute('class', 'logout_container');
-                            var log = document.createElement('div');
-                            log.setAttribute('class', 'logout_window');
-
-                            log.innerHTML = `
-                                <h3>Are you sure want to logout?</h3>
-                                <a class="logout-btn-inner" href="{% url 'logout' %}"> Logout </a>
-                            `;
-
-                            log_container.appendChild(log);
-                            body.appendChild(log_container);
-
-                            document.querySelector('.logout_container').addEventListener('click', function(){
-                                document.body.removeChild(log_container);
-                            });
-                        });
-                    </script>
-                {% else %}
-                    <li><a class="login-btn" href="{% url 'login' %}">Login</a></li>
-                    <li><a class="signup-btn" href="{% url 'signup' %}">Signup</a></li>
-                {% endif %}
-            </ul>
+        <div class="header-container">
+            <div class="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+            <a href="{% url 'store' %}"><div class="logo">
+                <img src={% static 'img/logo.svg' %} alt="logo">
+            </div></a>
+            <div class="search">
+                <input type="text" name="search" autocomplete="off">
+            </div>
+            <div style="cursor: pointer;" class="search-btn"><i class="fas fa-search"></i></div>
+            <script>
+                var search_btn = document.querySelector('.search-btn');
+                search_btn.addEventListener('click', function(){
+                    var query = document.querySelector('.search input').value;
+                    if(query == ''){
+                        window.location.replace('/');
+                    }
+                    else{
+                        window.location.replace('/search/'+query);
+                    }
+                });
+            </script>
             <div class="cart-icon">
                 <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"><p class="cart-number">{{ order.get_cart_total_item }}</p></i></a>
             </div>
-        </nav>
+            <nav>
+                <ul>
+                    <li class="home-btn"><a href="{% url 'store' %}">Store</a></li>
+                    <li class="category-btn">Category
+                        <div class="categories">
+                            <div class="categories-container">
+                                <ul>
+                                    {% for category in categories %}
+                                        <li class="category-options"><a href="../category/{{category.id}}">{{ category.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="logout-btn">Logout</li>
+                        <script type="text/javascript">
+                            var logout_btn = document.querySelector('.logout-btn');
+                            logout_btn.addEventListener('click', function(){
+                                var body = document.body;
+                                var log_container = document.createElement('div');
+                                log_container.setAttribute('class', 'logout_container');
+                                var log = document.createElement('div');
+                                log.setAttribute('class', 'logout_window');
+
+                                log.innerHTML = `
+                                    <h3>Are you sure want to logout?</h3>
+                                    <a class="logout-btn-inner" href="{% url 'logout' %}"> Logout </a>
+                                `;
+
+                                log_container.appendChild(log);
+                                body.appendChild(log_container);
+
+                                document.querySelector('.logout_container').addEventListener('click', function(){
+                                    document.body.removeChild(log_container);
+                                });
+                            });
+                        </script>
+                    {% else %}
+                        <li><a class="login-btn" href="{% url 'login' %}">Login</a></li>
+                        <li><a class="signup-btn" href="{% url 'signup' %}">Signup</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div class="mobile-nav">
+                <ul>
+                    <li class="home-btn"><a href="{% url 'store' %}">Store</a></li>
+                    <li class="category-btn">Category
+                        <div class="categories">
+                            <div class="categories-container">
+                                <ul>
+                                    {% for category in categories %}
+                                        <li class="category-options"><a href="../category/{{category.id}}">{{ category.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="logout-btn2">Logout</li>
+                        <script type="text/javascript">
+                            var logout_btn = document.querySelector('.logout-btn2');
+                            logout_btn.addEventListener('click', function(){
+                                var body = document.body;
+                                var log_container = document.createElement('div');
+                                log_container.setAttribute('class', 'logout_container');
+                                var log = document.createElement('div');
+                                log.setAttribute('class', 'logout_window');
+
+                                log.innerHTML = `
+                                    <h3>Are you sure want to logout?</h3>
+                                    <a class="logout-btn-inner" href="{% url 'logout' %}"> Logout </a>
+                                `;
+
+                                log_container.appendChild(log);
+                                body.appendChild(log_container);
+
+                                document.querySelector('.logout_container').addEventListener('click', function(){
+                                    document.body.removeChild(log_container);
+                                });
+                            });
+                        </script>
+                    {% else %}
+                        <li><a class="login-btn" href="{% url 'login' %}">Login</a></li>
+                        <li><a class="signup-btn" href="{% url 'signup' %}">Signup</a></li>
+                    {% endif %}
+                </ul>
+                <div class="search-section">
+                    <div class="search">
+                        <input type="text" name="search" autocomplete="off">
+                    </div>
+                    <div style="cursor: pointer;" class="search-btn"><i class="fas fa-search"></i></div>
+                </div>
+                <script>
+                    var search_btn = document.querySelector('.mobile-nav .search-btn');
+                    search_btn.addEventListener('click', function(){
+                        var query = document.querySelector('.mobile-nav .search input').value;
+                        document.querySelector(".mobile-nav").style.display = 'none'
+                        if(query == ''){
+                            window.location.replace('/');
+                        }
+                        else{
+                            window.location.replace('/search/'+query);
+                        }
+                    });
+                </script>
+            </div>
+            <script type="text/javascript">
+                var menu = document.querySelector('.menu-icon i')
+                var mobile_nav = document.querySelector('.mobile-nav')
+                var mobile_nav_flag = false
+                menu.addEventListener('click', () => {
+                    if(!mobile_nav_flag){
+                        mobile_nav.style.display = 'flex'
+                        mobile_nav_flag = true
+                    }
+                    else{
+                        mobile_nav.style.display = 'none'
+                        mobile_nav_flag = false
+                    }
+                })
+            </script>
+        </div>
     </header>
     {% block body %}
     {% endblock body %}

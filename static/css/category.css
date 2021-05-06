@@ -102,3 +102,23 @@ h1{
 	color: white;
 	transition: .3s;
 }
+
+
+@media screen and (max-width: 895px) {
+	.product-container{
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+@media screen and (max-width: 625px) {
+	.product-container{
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media screen and (max-width: 565px) {
+	.product-container{
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.product-container .item-products{
+		min-height: 450px;
+	}
+}

@@ -14,14 +14,14 @@
 	margin-bottom: 40px;
 }
 .signup form{
-    width: 500px;
+    width: 300px;
     margin: auto;
     padding: 20px;
     border: none;
 }
 .signup form input{
     padding: 10px;
-    width: 100%;
+    width: 92%;
     border: none;
     background-color: #ededed;
 }
@@ -50,7 +50,7 @@
     transition: .2s;
 }
 .signup .extra{
-    width: 400px;
+    width: 300px;
     font-size: 15px;
     margin: auto;
 }
