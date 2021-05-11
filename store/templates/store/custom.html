@@ -1,0 +1,55 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/custom_tshirt.css' %}">
+<div class="container">
+	<h1>Custom Tshirt</h1>
+	<div class="main">
+		<div class="options">
+			<h2>Design Size</h2>
+			<div class="selects">
+				<h4 data-size="large">Large</h4>
+				<h4 data-size="medium">Medium</h4>
+				<h4 data-size="small">Small</h4>
+			</div>
+			<h2>Tshirt Color</h2>
+			<div class="selects">
+				<div data-color="black" class="color" style="background: black;"></div>
+				<div data-color="gray" class="color" style="background: gray;"></div>
+				<div data-color="white" class="color" style="background: white;"></div>
+				<div data-color="#22dde0" class="color" style="background: #22dde0;"></div>
+				<div  data-color="#c90630"class="color" style="background: #c90630;"></div>
+			</div>
+			<h2>Quentity</h2>
+			<div class="quentity-section">
+				<i class="fas fa-minus" id="minus"></i><input class="quentity-input" type="text" name="quentity" value=1><i class="fas fa-plus" id="plus"></i>
+			</div>
+		</div>
+		<div class="view">
+			<div class="colar">
+			</div>
+			<div class="tshirt">
+				<img class="design-medium" src="https://i.pinimg.com/736x/20/d7/53/20d7539f3e5de612a9fa0ef0a6e63027.jpg">
+			</div>
+		</div>
+		<div class="upload">
+			<h2>Tshirt Size</h2>
+			<div class="selects">
+				<h4 data-size="s">S</h4>
+				<h4 data-size="m">M</h4>
+				<h4 data-size="l">L</h4>
+				<h4 data-size="xl">XL</h4>
+				<h4 data-size="xxl">XXL</h4>
+			</div>
+			<h2>Upload Design</h2>
+			<form class="custom-order-form">
+				{% csrf_token %}
+				<input class="design-input" type="file" name="design">
+				<button type="submit" class="order-btn"> Order Now! </button>
+			</form>
+		</div>
+		<input type="hidden" class="tshirt-data" data-design_size="medium" data-tshirt_size="xl" data-tshirt_color="black" data-quentity=1>
+	</div>
+</div>
+<script src="{% static 'js/custom.js' %}" charset="utf-8"></script>
+{% endblock body %}

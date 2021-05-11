@@ -5,15 +5,7 @@ update_cart_btn.forEach((btn) => {
 		var productID = this.dataset.product;
 		var action = this.dataset.action;
 		console.log('productID: ', productID, 'action: ', action);
-
-		console.log(user);
-		if(user == "AnonymousUser"){
-			console.log("user not logged in");
-			addCookieItem(productID, action);
-		}
-		else{
-			update_user_order(productID, action);
-		}
+		addCookieItem(productID, action);
 	});
 });
 
@@ -60,8 +52,6 @@ function update_user_order(productID, action){
 		document.querySelector('.cart-number').innerHTML = data['quentity'];
 	})
 }
-
-
 
 
 

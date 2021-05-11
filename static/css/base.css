@@ -2,7 +2,7 @@ body{
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Arial', sans-serif;
-	overflow-x: hidden;
+	overflow: hidden;
 	background-color: white;
 }
 *{
@@ -12,7 +12,11 @@ body{
 html{
 	overflow-x: hidden;
 }
-
+.max-width-container{
+	max-width: 1700px;
+	margin: auto;
+	min-height: calc(100vh - 430px);
+}
 
 /* header */
 header{
@@ -22,7 +26,7 @@ header{
 	width: 100%;
 	box-shadow: 0px 2px 10px lightgray;
 	background-color: white;
-	z-index: 100;
+	z-index: 200;
 }
 .header-container{
 	margin: 0px 40px;
@@ -80,10 +84,12 @@ nav ul li:hover{
 	border-bottom: 3px solid black;
 	cursor: pointer;
 	padding-bottom: 10px;
+	display: inline-block;
 }
 .categories{
 	display: none;
 	position: absolute;
+	transform: translateX(-80px);
 	width: 200px;
 	background-color: transparent;
 }
@@ -147,11 +153,14 @@ nav ul li:hover .categories{
 /* footer */
 .footer{
 	position: relative;
-	bottom: 0px;
+	bottom: -5px;
 	margin-top: 100px;
 	font-size: 13px;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 270px;
+	width: 100%;
 	background-color: #111;
 	color: #CFCFCF;
 }
@@ -302,8 +311,8 @@ nav ul li:hover .categories{
 		flex-direction: column;
 		justify-content: space-between;
 	}
-	.mobile-nav ul > li{
-		display: block;
+	.mobile-nav ul li{
+		display: inline-block;
 		list-style: none;
 		padding: 0px;
 		font-weight: bold;
@@ -335,7 +344,7 @@ nav ul li:hover .categories{
 	.mobile-nav ul li ul li{
 		padding: 10px;
 		list-style: none;
-		display: block;
+		display: inline-block;
 	}
 	.mobile-nav ul li:hover .categories{
 		display: block;
@@ -343,5 +352,8 @@ nav ul li:hover .categories{
 		margin-top: 0px;
 		margin-left: 65px;
 		animation: drop;
+	}
+	.category-options{
+		display: inline-block;
 	}
 }

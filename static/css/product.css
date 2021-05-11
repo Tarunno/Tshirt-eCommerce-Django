@@ -20,6 +20,16 @@ h1{
 	width: 290px;
 	margin-right: 30px;
 }
+.tag{
+	padding: 5px 10px;
+	border: 1px solid black;
+	margin-left: 5px;
+}
+.color-tag{
+	padding: 5px 20px;
+	border: 1px solid black;
+	margin-left: 5px;
+}
 .add-to-cart-btn{
 	font-size: 13px;
 	text-decoration: none;
@@ -29,6 +39,9 @@ h1{
 	background-color: #ffffff;
 	font-family: 'Arial', sans-serif;
 	transition: .3s;
+	float: left;
+	position: absolute;
+	z-index: 100;
 }
 #item-btn:hover{
 	background-color: #111;
@@ -50,11 +63,24 @@ h1{
 .product-price{
 	font-size: 25px;
 	margin-bottom: 30px;
+	margin-top: 15px;
 }
 .product-stock{
 	font-size: 15px;
 	font-weight: bolder;
 	padding: 5px;
+}
+.product-size{
+	font-size: 15px;
+	font-weight: bolder;
+	display: inline;
+	margin-right: 20px;
+}
+.product-color{
+	display: inline;
+	font-size: 15px;
+	font-weight: bolder;
+	margin-bottom: 10px;
 }
 .product-shipping{
 	font-size: 15px;

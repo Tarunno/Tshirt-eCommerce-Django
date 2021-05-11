@@ -7,6 +7,7 @@
 	<div class="product">
 		<div class="product-container">
 				<div class="item">
+					<a data-product={{product.id}} data-action="add" id="item-btn" class="add-to-cart-btn update-cart">Add to cart</a>
 					<img src={{ product.image.url }}>
 					<h3 class="product-name"> {{ product.name }}</h3>
 					{% if product.on_stock %}
@@ -24,15 +25,16 @@
 					</h2><p style="display:inline;"> <i style="font-size:13px;" class="fas fa-user"> </i> {{ rated }}</p>
 					<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
 						 The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+					<h3 class="product-size">Size: <span class="tag">{{product.size}}</span></h3>
+					<h3 class="product-color">Color:<span class="color-tag" style="background:{{product.color}}"></span></h3>
 					<h3 class="product-price"><i class="fas fa-dollar-sign"></i>{{ product.price }}</h3>
-					<a data-product={{product.id}} data-action="add" id="item-btn" class="add-to-cart-btn update-cart">Add to cart</a>
 				</div>
 		</div>
 	</div>
 	{% if user.is_authenticated %}
 	<div class="rating-update">
 		<h2>Rate this product</h2>
-		<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+		<p>Please rate this product to ensure the quality and service!</p>
 		{% if user.is_authenticated %}
 			<select class="rating-select">
 				<option value="0"> 0 </option>
@@ -49,8 +51,7 @@
 	</div>
 	<div class="reviews">
 		<h2>Leave a review of this product</h2>
-		<p>Content of a page when looking at its layout is a long established fact that a reader will
-			 be distracted by the readable content of a page when looking at its layout.</p>
+		<p>Leave a review of this product so that other customer can be benefited!</p>
 		<h3>{{reviews.count}} reviews</h3>
 		{% if user.is_authenticated %}
 			<input type="text" placeholder="review..." class="review-text">

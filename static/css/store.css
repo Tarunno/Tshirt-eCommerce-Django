@@ -126,10 +126,18 @@
 	margin-bottom: 23px;
 	margin-top: 10px;
 }
+.price{
+	float: right;
+}
 .product-price{
 	color: #404040;
-	float: right;
 	margin-right: 10px;
+}
+.product-old-price{
+	text-decoration: line-through;
+	font-size: 12px;
+	padding: 1px;
+	color: gray;
 }
 #item-btn:hover{
 	background-color: #111;

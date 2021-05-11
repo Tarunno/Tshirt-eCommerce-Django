@@ -6,9 +6,6 @@
 	<h1 class="checkout-heading">Checkout</h1>
 	<div class="inner-container">
 		<div class="inner-container-part">
-			<h3>Client information</h3>
-			<input type="text" placeholder="Name">
-			<input type="text" placeholder="Email">
 			<h3>Shipping information</h3>
 			<input type="text" placeholder="Address">
 			<input type="text" placeholder="City">
@@ -18,9 +15,40 @@
 		<div class="inner-container-part">
 			<div class="checkout-index">
 				<h2>Checkout summary</h2><br>
-				<h3>Number of items: <span id="number">{{ order.get_cart_total_item }}</span></h3>
-				<h3>Total price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ order.get_cart_total}}</span></h3>
-				<a href="{% url 'order_placed' %}"><button class="continue-btn" type="button" name="button">Continue</button></a>
+				<h3>Number of items: <span id="number">{{ cart_info.get_cart_total_item }}</span></h3>
+				<h3>Total price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ cart_info.get_cart_total}}</span></h3>
+				<button class="continue-btn" type="button" name="button">Continue</button>
+				<script type="text/javascript">
+					var continueBtn = document.querySelector(".continue-btn");
+					var inputs = document.querySelectorAll(".inner-container-part input");
+					continueBtn.addEventListener("click", () => {
+						var dataArray = [inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value];
+						var emptyField = false;
+						dataArray.map((item) => {
+							if(item == "") emptyField = true;
+						})
+						if(emptyField){
+							alert("Empty fields!");
+						}
+						else{
+							var url = '/order_placed/'
+							fetch(url, {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json',
+									'X-CSRFToken': csrftoken
+								},
+								body: JSON.stringify({
+									'address': inputs[0].value,
+									'city': inputs[1].value,
+									'state': inputs[3].value,
+									'zip': inputs[2].value
+								})
+							})
+							window.location.assign('../cart/redirect')
+						}
+					})
+				</script>
 			</div>
 		</div>
 	</div>

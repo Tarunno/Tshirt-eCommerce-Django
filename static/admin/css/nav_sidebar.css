@@ -1,0 +1,109 @@
+.sticky {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+	margin: 0px 20px 0px 10px;
+	padding: 5px;
+}
+
+.toggle-nav-sidebar {
+    z-index: 20;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 23px;
+    width: 23px;
+	border: none;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+    padding: 5px;
+	border-radius: 5px;
+}
+
+[dir="rtl"] .toggle-nav-sidebar {
+    border-left: 0;
+    border-right: 0;
+}
+
+.toggle-nav-sidebar:hover,
+.toggle-nav-sidebar:focus {
+    background-color: lightgray;
+}
+
+#nav-sidebar {
+    z-index: 15;
+    flex: 0 0 275px;
+    left: -340px;
+    margin-left: -340px;
+    background-color: #ffffff;
+    overflow: auto;
+	transition: .5s;
+}
+
+[dir="rtl"] #nav-sidebar {
+    left: 0;
+    margin-left: 0;
+    right: -276px;
+    margin-right: -276px;
+}
+
+.toggle-nav-sidebar::before {
+    content: '\00BB';
+}
+
+.main.shifted .toggle-nav-sidebar::before {
+    content: '\00AB';
+}
+
+.main.shifted > #nav-sidebar {
+    left: 24px;
+    margin-left: 0;
+}
+
+[dir="rtl"] .main.shifted > #nav-sidebar {
+    left: 0;
+    right: 24px;
+    margin-right: 0;
+}
+
+#nav-sidebar .module th {
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+#nav-sidebar .module th,
+#nav-sidebar .module caption {
+    padding-left: 16px;
+}
+
+#nav-sidebar .module td {
+    white-space: nowrap;
+}
+
+[dir="rtl"] #nav-sidebar .module th,
+[dir="rtl"] #nav-sidebar .module caption {
+    padding-left: 8px;
+    padding-right: 16px;
+}
+
+#nav-sidebar .current-app .section:link,
+#nav-sidebar .current-app .section:visited {
+    color: black;
+    font-weight: bold;
+}
+
+#nav-sidebar .current-model {
+    background: lightgray;
+}
+
+@media (max-width: 767px) {
+    #nav-sidebar, #toggle-nav-sidebar {
+        display: none;
+    }
+}
+
+.change-list .main > #nav-sidebar+.content {
+}

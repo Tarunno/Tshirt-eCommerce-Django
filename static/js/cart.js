@@ -1,5 +1,9 @@
 var update_btn = document.querySelectorAll('.update-item');
+var totalItem = document.querySelector('.total-item');
 
+if(totalItem.innerHTML == 0){
+	document.cookie ='cart=' + JSON.stringify({}) + ";domain=;path=/";
+}
 
 update_btn.forEach((btn) => {
 	btn.addEventListener('click', function(){
@@ -8,14 +12,10 @@ update_btn.forEach((btn) => {
 
 		console.log('productID: ', productID, 'action: ', action);
 		console.log(user);
-		if(user == "AnonymousUser"){
-			addCookieItem(productID, action);
-		}
-		else{
-			update_user_item(productID, action);
-		}
+		addCookieItem(productID, action);
 	});
 });
+
 
 function addCookieItem(productID, action){
 	console.log("Cookie..");

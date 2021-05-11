@@ -2,85 +2,87 @@
 {% load static %}
 {% block body %}
 <link rel="stylesheet" href="{% static 'css/cart.css' %}">
-<div class="container">
-	<h1 class="cart-heading">Cart</h1>
-	<div class="inner-container">
-		<div class="cart-index">
-			<h3>Number of items: <span id="number">{{ order.get_cart_total_item }}</span></h3>
-			<h3>Total price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ order.get_cart_total }}</span></h3>
-			<a class="checkout-btn" href="{% url 'checkout' %}"> Checkout </a>
-		</div>
-		<div class="cart-items">
-			{% for item in items %}
-				<div class="cart-item">
-					<img src={{ item.product.image.url }} alt="Product image">
-					<h4 class="cart-item-name">{{ item.product.name | slice:40 }}...</h4>
-					<h4 class="cart-item-price">Price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ item.product.price | floatformat:2 }}</span></h4>
-					<div class="quentity">
-						<h4 class="cart-item-quentity">Quentity: <span class="quentity-number" id="number">{{ item.quentity }}</span></h4>
-						<div class="quentity-btn">
-							<p class="up-btn update-item" data-product={{item.product.id}} data-action="add"><i class="fas fa-caret-up"></i></p>
-							<p class="down-btn update-item" data-product={{item.product.id}} data-action="remove"><i class="fas fa-caret-down"></i></p>
+<div class="max-width-container">
+	<div class="container">
+		<h1 class="cart-heading">Cart</h1>
+		<div class="inner-container">
+			<div class="cart-index">
+				<h3>Number of items: <span id="number" class="total-item">{{ cart_info.get_cart_total_item }}</span></h3>
+				<h3>Total price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ cart_info.get_cart_total }}</span></h3>
+				<a class="checkout-btn" href="{% url 'checkout' %}"> Checkout </a>
+			</div>
+			<div class="cart-items">
+				{% for item in items %}
+					<div class="cart-item">
+						<img src={{ item.product.image.url }} alt="Product image">
+						<h4 class="cart-item-name">{{ item.product.name | slice:40 }}...</h4>
+						<h4 class="cart-item-price">Price: <span id="number"><i class="fas fa-dollar-sign"></i> {{ item.product.price | floatformat:2 }}</span></h4>
+						<div class="quentity">
+							<h4 class="cart-item-quentity">Quentity: <span class="quentity-number" id="number">{{ item.quentity }}</span></h4>
+							<div class="quentity-btn">
+								<p class="up-btn update-item" data-product={{item.product.id}} data-action="add"><i class="fas fa-caret-up"></i></p>
+								<p class="down-btn update-item" data-product={{item.product.id}} data-action="remove"><i class="fas fa-caret-down"></i></p>
+							</div>
 						</div>
+						<h4 class="cart-item-total-price">Total: <span id="number"><i class="fas fa-dollar-sign"></i> {{ item.get_total | floatformat:2 }}</span></h4>
 					</div>
-					<h4 class="cart-item-total-price">Total: <span id="number"><i class="fas fa-dollar-sign"></i> {{ item.get_total | floatformat:2 }}</span></h4>
-				</div>
-				<hr>
-			{% endfor %}
-		</div>
-	</div>
-	{% if user.is_authenticated %}
-		{% if order.complete != True %}
-		<div class="my-order">
-			<h1> Order status</h1>
-			<h4>Please receive your order when all steps are complete. We will shortly connect with you.</h4>
-			<div class="my-order-inner">
-				{% if order.order_placed %}
-					<div class="active-icon">
-						<img src="{% static 'img/gift0.svg' %}">
-					</div><p class="line active-line">------------------</p>
-					<p class="shorter-line active-line">---</p>
-				{% else %}
-					<div class="icon">
-						<img src="{% static 'img/gift.svg' %}">
-					</div><p class="line">------------------</p>
-					<p class="shorter-line">---</p>
-				{% endif %}
-				{% if order.order_packed %}
-					<div class="active-icon">
-						<img src="{% static 'img/box0.svg' %}">
-					</div><p class="line active-line">----------------</p>
-					<p class="shorter-line active-line">---</p>
-				{% else %}
-					<div class="icon">
-						<img src="{% static 'img/box.svg' %}">
-					</div><p class="line">----------------</p>
-					<p class="shorter-line">---</p>
-				{% endif %}
-				{% if order.order_shipping %}
-					<div class="active-icon">
-						<img src="{% static 'img/truck0.svg' %}">
-					</div><p class="line active-line">----------------</p>
-					<p class="shorter-line active-line">---</p>
-				{% else %}
-					<div class="icon">
-						<img src="{% static 'img/truck.svg' %}">
-					</div><p class="line">----------------</p>
-					<p class="shorter-line">---</p>
-				{% endif %}
-				{% if order.order_shipped %}
-					<div class="active-icon">
-						<img src="{% static 'img/shipped0.svg' %}">
-					</div>
-				{% else %}
-					<div class="icon">
-						<img src="{% static 'img/shipped.svg' %}">
-					</div>
-				{% endif %}
+					<hr>
+				{% endfor %}
 			</div>
 		</div>
+		{% if user.is_authenticated %}
+			{% if order.complete != True %}
+			<div class="my-order">
+				<h1> Order status</h1>
+				<h4>Please receive your order when all steps are complete. We will shortly connect with you.</h4>
+				<div class="my-order-inner">
+					{% if order.order_placed %}
+						<div class="active-icon">
+							<img src="{% static 'img/gift0.svg' %}">
+						</div><p class="line active-line">------------------</p>
+						<p class="shorter-line active-line">---</p>
+					{% else %}
+						<div class="icon">
+							<img src="{% static 'img/gift.svg' %}">
+						</div><p class="line">------------------</p>
+						<p class="shorter-line">---</p>
+					{% endif %}
+					{% if order.order_packed %}
+						<div class="active-icon">
+							<img src="{% static 'img/box0.svg' %}">
+						</div><p class="line active-line">----------------</p>
+						<p class="shorter-line active-line">---</p>
+					{% else %}
+						<div class="icon">
+							<img src="{% static 'img/box.svg' %}">
+						</div><p class="line">----------------</p>
+						<p class="shorter-line">---</p>
+					{% endif %}
+					{% if order.order_shipping %}
+						<div class="active-icon">
+							<img src="{% static 'img/truck0.svg' %}">
+						</div><p class="line active-line">----------------</p>
+						<p class="shorter-line active-line">---</p>
+					{% else %}
+						<div class="icon">
+							<img src="{% static 'img/truck.svg' %}">
+						</div><p class="line">----------------</p>
+						<p class="shorter-line">---</p>
+					{% endif %}
+					{% if order.order_shipped %}
+						<div class="active-icon">
+							<img src="{% static 'img/shipped0.svg' %}">
+						</div>
+					{% else %}
+						<div class="icon">
+							<img src="{% static 'img/shipped.svg' %}">
+						</div>
+					{% endif %}
+				</div>
+			</div>
+			{% endif %}
 		{% endif %}
-	{% endif %}
+	</div>
 </div>
 <script type="text/javascript" src="{% static 'js/cart.js' %}">
 </script>

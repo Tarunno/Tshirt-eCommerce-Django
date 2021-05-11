@@ -17,8 +17,8 @@
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr .6fr;
-	justify-items: end;
-	align-items: start;
+	justify-content: space-between;
+	align-items: center;
 	border: 0.01cm solid lightgray;
 	padding: 20px;
 }
@@ -131,6 +131,11 @@
 }
 .my-order h4{
 	margin: 10px 0px;
+}
+.checkout-btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .shorter-line{
 	display: none;

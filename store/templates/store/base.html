@@ -64,7 +64,7 @@
                 <img src={% static 'img/logo.svg' %} alt="logo">
             </div></a>
             <div class="search">
-                <input type="text" name="search" autocomplete="off">
+                <input type="text" name="search" autocomplete="off" placeholder="Search...">
             </div>
             <div style="cursor: pointer;" class="search-btn"><i class="fas fa-search"></i></div>
             <script>
@@ -80,7 +80,7 @@
                 });
             </script>
             <div class="cart-icon">
-                <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"><p class="cart-number">{{ order.get_cart_total_item }}</p></i></a>
+                <a href="{% url 'cart' 'none' %}"><i class="fas fa-shopping-cart"><p class="cart-number">{{ cart_info.get_cart_total_item }}</p></i></a>
             </div>
             <nav>
                 <ul>

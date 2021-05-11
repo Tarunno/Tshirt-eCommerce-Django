@@ -17,19 +17,19 @@ def store(request):
         category_product = Product.objects.filter(category=category).all().order_by('-date')[0: 4]
         products.extend(category_product)
 
-    on_sells = Product.objects.filter(on_sell=True).all()
+    on_sells = Product.objects.filter(on_sell=True).all().order_by('-date')
 
-    data = cartData(request)
-    order = data['order']
+    data = cookieCart(request)
+    cart_info = data['order']
 
     ratings = Rating.objects.all()
 
     context = {
-        'order': order,
         'categories': categories,
         'products': products,
         'on_sells': on_sells,
         'title': 'Store',
+        'cart_info': cart_info
     }
     return render(request, 'store/store.html', context)
 
@@ -48,11 +48,11 @@ def category_items(request, id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    data = cartData(request)
-    order = data['order']
+    data = cookieCart(request)
+    cart_info = data['order']
 
     context = {
-        'order': order,
+        'cart_info': cart_info,
         'categories': categories,
         'products': page_obj,
         'title': category,
@@ -81,11 +81,11 @@ def search(request, query):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    data = cartData(request)
-    order = data['order']
+    data = cookieCart(request)
+    cart_info = data['order']
 
     context = {
-        'order': order,
+        'cart_info': cart_info,
         'categories': categories,
         'products': page_obj,
         'title': 'Search',
@@ -97,8 +97,6 @@ def search(request, query):
 def view_product(request, id):
     product = Product.objects.get(id=id)
     categories = Category.objects.all()
-    data = cartData(request)
-    order = data['order']
 
     ratings = Rating.objects.filter(product=product)
     sum_rated = ratings.count()
@@ -110,13 +108,15 @@ def view_product(request, id):
         rating = sum_rating / sum_rated
 
     reviews = Review.objects.filter(product=product).all()
+    data = cookieCart(request)
+    cart_info = data['order']
 
     context = {
+        'cart_info': cart_info,
         'product': product,
         'rating': rating,
         'rated': sum_rated,
         'reviews': reviews,
-        'order': order,
         'categories': categories,
         'title': 'Product'
     }
@@ -170,20 +170,20 @@ def update_review(request):
 
 
 
-def cart(request):
+def cart(request, action):
     categories = Category.objects.all()
-    data = cartData(request)
-    order = data['order']
-    items = data['items']
-
-    if order.complete:
-        orders = order.orderitem_set.all()
-        for i in orders:
-            i.delete()
-        order.delete()
+    data = cookieCart(request)
+    order, created = Order.objects.get_or_create(customer=request.user.customer)
+    if action == "none":
+        items = data['items']
+        cart_info = data['order']
+    elif action == 'redirect':
+        items = []
+        cart_info = {'get_cart_total': 0, 'get_cart_total_item': 0}
 
     context = {
         'order': order,
+        'cart_info': cart_info,
         'items': items,
         'categories': categories,
         'title': 'Cart'
@@ -191,66 +191,50 @@ def cart(request):
     return render(request, 'store/cart.html', context)
 
 
-
 def checkout(request):
     categories = Category.objects.all()
-    data = cartData(request)
-    order = data['order']
+    data = cookieCart(request)
+    cart_info = data['order']
 
     context = {
-        'order': order,
+        'cart_info': cart_info,
         'categories': categories,
         'title': 'Checkout'
     }
     return render(request, 'store/checkout.html', context)
 
+
 def order_placed(request):
-    order = Order.objects.get(customer=request.user.customer)
-    order.order_placed = True
-    order.save()
-    return JsonResponse("order placed", safe=False)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        cart_data = cartData(request)
+        order, created = Order.objects.get_or_create(customer=request.user.customer)
+        Shipping.objects.create(customer=request.user.customer,
+                                order=order, address=data['address'],
+                                city=data['city'],
+                                state=data['state'],
+                                zip=data['zip'])
+        for i in cart_data['items']:
+            product = Product.objects.get(id=i['product']['id'])
+            OrderItem.objects.create(product=product, order=order, quentity=i['quentity'])
+        order = Order.objects.get(customer=request.user.customer)
+        order.order_placed = True
+        order.complete = False
+        order.save()
+        return redirect('cart', 'redirect')
+
 
 def about(request):
     categories = Category.objects.all()
-    data = cartData(request)
-    order = data['order']
+    data = cookieCart(request)
+    cart_info = data['order']
 
     context = {
-        'order': order,
+        'cart_info': cart_info,
         'categories': categories,
         'title': 'About'
     }
     return render(request, 'store/about.html', context)
-
-
-
-def update_item(request):
-    data = json.loads(request.body)
-    productID = data['productID']
-    action = data['action']
-
-    customer = request.user.customer
-    product = Product.objects.get(id=productID)
-
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    orderitem, created = OrderItem.objects.get_or_create(product=product, order=order)
-
-    if action == 'add':
-        orderitem.quentity = (orderitem.quentity + 1)
-    elif action == 'remove':
-        orderitem.quentity = (orderitem.quentity - 1)
-
-    orderitem.save()
-    messages.success(request, f'Product successfully added!')
-    if orderitem.quentity <= 0:
-        orderitem.delete()
-
-    data = cartData(request)
-    order = data['order']
-    count = order.get_cart_total_item
-
-    return JsonResponse({'quentity': count}, safe=False)
-
 
 
 def signup(request):
@@ -258,28 +242,50 @@ def signup(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name =request.POST.get('last_name')
-        user = request.POST.get('username')
+        username = request.POST.get('username')
         email = request.POST.get('email')
 
         form = UserRegistration(request.POST)
         if form.is_valid():
             form.save()
-            user = User.objects.get(username=username)
-            customer = Customer(user=user, email=email, name=first_name+" "+last_name+" "+username)
-            customer.save()
             return redirect('login')
     else:
         form = UserRegistration()
 
-    data = cartData(request)
-    order = data['order']
-    items = data['items']
+    data = cookieCart(request)
+    cart_info = data['order']
 
     context = {
-        'order': order,
+        'cart_info': cart_info,
         'title': 'Checkout',
         'form': form,
         'categories': categories,
         'title': 'signup'
     }
     return render(request, 'store/signup.html', context)
+
+
+def custom(request):
+    categories = Category.objects.all()
+    data = cookieCart(request)
+    cart_info = data['order']
+
+    if request.method == 'POST':
+        form = CustomTshirtForm(request.POST, request.FILES)
+        if form.is_valid():
+            order, created = Order.objects.get_or_create(customer=request.user.customer)
+            order.custom = True
+            order.order_placed =True
+            order.save()
+
+            form = form.save(commit=False)
+            form.customer = request.user.customer
+            form.order = order
+            form.save()
+
+    context = {
+        'categories': categories,
+        'cart_info': cart_info,
+        'title': 'Custom'
+    }
+    return render(request, 'store/custom.html', context)

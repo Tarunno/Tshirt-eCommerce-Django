@@ -1,25 +1,3 @@
-// Rating
-var rating_star = document.querySelector('.rating');
-var rating = Number(rating_star.dataset.rating);
-var int_rating = parseInt(rating);
-var fraction = rating - int_rating;
-for(let i=1; i<=int_rating; i++){
-	rating_star.innerHTML += '<i class="fas fa-star"></i>';
-}
-if(fraction >= 0.5){
-	rating_star.innerHTML += '<i class="fas fa-star-half-alt"></i>';
-	int_rating++;
-}
-for(let i=int_rating+1; i<=5; i++){
-	rating_star.innerHTML += '<i class="far fa-star"></i>';
-}
-
-// location navigation
-var links = document.querySelectorAll('.category-options a');
-links.forEach((link) => {
-	link.href = link.href.replace('product/', '');
-});
-
 // CART //
 var update_cart_btn = document.querySelectorAll('.update-cart');
 update_cart_btn.forEach((btn) => {
@@ -27,15 +5,7 @@ update_cart_btn.forEach((btn) => {
 		var productID = this.dataset.product;
 		var action = this.dataset.action;
 		console.log('productID: ', productID, 'action: ', action);
-
-		console.log(user);
-		if(user == "AnonymousUser"){
-			console.log("user not logged in");
-			addCookieItem(productID, action);
-		}
-		else{
-			update_user_order(productID, action);
-		}
+		addCookieItem(productID, action);
 	});
 });
 
@@ -60,29 +30,28 @@ function addCookieItem(productID, action){
 	location.reload();
 }
 
-function update_user_order(productID, action){
-	console.log("user is authenticated");
 
-	var url = '/update_item/';
-	fetch(url, {
-		method: 'POST',
-		headers:{
-			'Content-Type': 'application/json',
-			'X-CSRFToken': csrftoken,
-		},
-		body: JSON.stringify({
-			'productID': productID,
-			'action': action
-		})
-	})
-	.then((response) => {
-		return response.json();
-	})
-	.then((data) => {
-		console.log('data: ', data);
-		location.reload();
-	})
+// Rating
+var rating_star = document.querySelector('.rating');
+var rating = Number(rating_star.dataset.rating);
+var int_rating = parseInt(rating);
+var fraction = rating - int_rating;
+for(let i=1; i<=int_rating; i++){
+	rating_star.innerHTML += '<i class="fas fa-star"></i>';
 }
+if(fraction >= 0.5){
+	rating_star.innerHTML += '<i class="fas fa-star-half-alt"></i>';
+	int_rating++;
+}
+for(let i=int_rating+1; i<=5; i++){
+	rating_star.innerHTML += '<i class="far fa-star"></i>';
+}
+
+// location navigation
+var links = document.querySelectorAll('.category-options a');
+links.forEach((link) => {
+	link.href = link.href.replace('product/', '');
+});
 
 document.querySelector('.rating-submit').addEventListener('click', function(){
 	var rating = document.querySelector('.rating-select').value;
