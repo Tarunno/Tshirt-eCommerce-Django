@@ -1,5 +1,5 @@
 var designSize = document.querySelectorAll(".options .selects h4")
-var tshirtSize = document.querySelectorAll(".upload .selects h4")
+var tshirtSize = document.querySelectorAll(".upload .selects-2~ h4")
 var tshirtColor = document.querySelectorAll(".options .selects .color")
 var tshirtData = document.querySelector(".tshirt-data")
 var tshirtDesgin = document.querySelector(".tshirt img")
@@ -18,7 +18,7 @@ tshirtColor[0].style.border = "1px solid #111"
 var quentityValue = Number.parseInt(quentity.value)
 
 quentityPlus.addEventListener('click', () => {
-	quentity.value = ++quentityValue
+	quentity.value = ++quentityValue~
 	tshirtData.dataset.quentity = quentity.value
 })
 quentityMinus.addEventListener('click', () => {
@@ -31,8 +31,8 @@ quentityMinus.addEventListener('click', () => {
 designSize.forEach((item, i) => {
 	item.addEventListener("click", () => {
 		designSize.forEach((item, i) => {
-			item.style.background = "white"
-			item.style.color = "black"
+			item.style.background = "#f4f4f4"
+			item.style.color = "gray"
 		})
 		item.style.background = "black"
 		item.style.color = "white"
@@ -44,8 +44,8 @@ designSize.forEach((item, i) => {
 tshirtSize.forEach((item, i) => {
 	item.addEventListener("click", () => {
 		tshirtSize.forEach((item, i) => {
-			item.style.background = "white"
-			item.style.color = "black"
+			item.style.background = "#f4f4f4"
+			item.style.color = "gray"
 		})
 		item.style.background = "black"
 		item.style.color = "white"
@@ -55,10 +55,6 @@ tshirtSize.forEach((item, i) => {
 
 tshirtColor.forEach((item, i) => {
 	item.addEventListener("click", () => {
-		tshirtColor.forEach((item, i) => {
-			item.style.border = "none"
-		})
-		item.style.border = "1px solid #111"
 		tshirt.style.backgroundColor = item.dataset.color
 		tshirtData.dataset.tshirt_color = item.dataset.color
 	})
