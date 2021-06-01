@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 import json
 
 from .models import *
@@ -32,7 +33,6 @@ def store(request):
         'cart_info': cart_info
     }
     return render(request, 'store/store.html', context)
-
 
 
 def category_items(request, id):
@@ -93,7 +93,6 @@ def search(request, query):
     return render(request, 'store/category.html', context)
 
 
-
 def view_product(request, id):
     product = Product.objects.get(id=id)
     categories = Category.objects.all()
@@ -123,7 +122,7 @@ def view_product(request, id):
     return render(request, 'store/product.html', context)
 
 
-
+@login_required(login_url="login")
 def rating_update(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -150,7 +149,7 @@ def rating_update(request):
     return JsonResponse({'total_rating': total_rating}, safe=False)
 
 
-
+@login_required(login_url="login")
 def update_review(request):
     data = json.loads(request.body)
     product = Product.objects.get(id=data['productID'])
@@ -169,7 +168,7 @@ def update_review(request):
         return JsonResponse({'status': 'deleted'})
 
 
-
+@login_required(login_url="login")
 def cart(request, action):
     categories = Category.objects.all()
     data = cookieCart(request)
@@ -190,7 +189,7 @@ def cart(request, action):
     }
     return render(request, 'store/cart.html', context)
 
-
+@login_required(login_url="login")
 def checkout(request):
     categories = Category.objects.all()
     data = cookieCart(request)
@@ -203,7 +202,7 @@ def checkout(request):
     }
     return render(request, 'store/checkout.html', context)
 
-
+@login_required(login_url="login")
 def order_placed(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -265,6 +264,7 @@ def signup(request):
     return render(request, 'store/signup.html', context)
 
 
+@login_required(login_url="login")
 def custom(request):
     categories = Category.objects.all()
     data = cookieCart(request)

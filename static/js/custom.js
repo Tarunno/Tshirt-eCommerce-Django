@@ -1,5 +1,5 @@
 var designSize = document.querySelectorAll(".options .selects h4")
-var tshirtSize = document.querySelectorAll(".upload .selects-2~ h4")
+var tshirtSize = document.querySelectorAll(".upload .selects-2 h4")
 var tshirtColor = document.querySelectorAll(".options .selects .color")
 var tshirtData = document.querySelector(".tshirt-data")
 var tshirtDesgin = document.querySelector(".tshirt img")
@@ -18,7 +18,7 @@ tshirtColor[0].style.border = "1px solid #111"
 var quentityValue = Number.parseInt(quentity.value)
 
 quentityPlus.addEventListener('click', () => {
-	quentity.value = ++quentityValue~
+	quentity.value = ++quentityValue
 	tshirtData.dataset.quentity = quentity.value
 })
 quentityMinus.addEventListener('click', () => {
