@@ -12,6 +12,7 @@ def update_order(sender, instance, *args, **kwargs):
         instance.order_shipping = False
         instance.order_shipped = False
         instance.custom = False
+        instance.complete = False
         orderitems = instance.orderitem_set.all()
         for item in orderitems:
             item.delete()
