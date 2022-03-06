@@ -275,7 +275,7 @@ def custom(request):
         if form.is_valid():
             order, created = Order.objects.get_or_create(customer=request.user.customer)
             order.custom = True
-            order.order_placed =True
+            order.order_placed = True
             order.save()
 
             form = form.save(commit=False)
