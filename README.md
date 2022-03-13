@@ -8,15 +8,11 @@
 #### 5. Rating and reviewing products.
 #### 6. Search products and see products based on category.
 
-## Home page:
-![](GIF/home.gif)
 ## Front-end Features:
 #### 1. parallax effect.
 #### 2. JavaScript fatch API for smooth experience.
 #### 3. Core html, css, js.
 
-## Product:
-![](GIF/product.gif)
 ## Back-end features:
 #### 1. Django
 #### 2. JSON
