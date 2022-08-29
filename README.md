@@ -3,10 +3,11 @@
 ## Features:
 #### 1. Login and signup.
 #### 2. add product to your cart without login by using cookies.
-#### 3. customizable cart.
-#### 4. admin can add, delete and update products.
-#### 5. Rating and reviewing products.
-#### 6. Search products and see products based on category.
+#### 3. order Custom Tshirt.
+#### 4. customizable cart.
+#### 5. admin can add, delete and update products.
+#### 6. Rating and reviewing products.
+#### 7. Search products and see products based on category.
 
 ## Front-end Features:
 #### 1. parallax effect.
