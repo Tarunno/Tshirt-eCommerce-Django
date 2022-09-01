@@ -1,11 +1,11 @@
 # Tshirt-eCommerce-Django
 #### This site is a prototype of online Tshirt shop. 
 # Home page:
-![](GIF/home.gif =250x250)
+![](GIF/home.gif | width=100)
 # Order custom tshirt:
-![](GIF/custom-tshirt.gif)
+![](GIF/custom-tshirt.gif | width=100)
 # Cart
-![](GIF/add-cart.gif =250x250)
+![](GIF/add-cart.gif | width=100)
 ## Features:
 #### 1. Login and signup.
 #### 2. add product to your cart without login by using cookies.
