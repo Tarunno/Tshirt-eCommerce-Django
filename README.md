@@ -1,8 +1,7 @@
 # Tshirt-eCommerce-Django
 #### This site is a prototype of online Tshirt shop. 
 # Home page:
-![](GIF/home.gif)
-<img src="GIF/home.gif" width="200"/>
+<img src="GIF/home.gif" width="400"/>
 # Order custom tshirt:
 ![](GIF/custom-tshirt.gif)
 # Cart
