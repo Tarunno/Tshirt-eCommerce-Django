@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import json
+import sys
 
 from .models import *
 from .forms import *
@@ -37,12 +38,48 @@ def store(request):
 
 def category_items(request, id):
     categories = Category.objects.all()
-    if id == '-1':
-        products = Product.objects.all().order_by('-date')
-        category = "All"
+    products = Product.objects.all().order_by('-date')
+
+    if request.method == 'POST':
+        starting_price = 0
+        ending_price = sys.maxsize
+
+        category = request.POST.get('category')
+        color = request.POST.get('colors')
+        size = request.POST.get('sizes')
+        starting_price = request.POST.get('starting-price')
+        if starting_price: float(starting_price)
+        ending_price = request.POST.get('ending-price')
+        if starting_price: float(starting_price)
+        on_sell = request.POST.get('on-sell')
+        free_delivery = request.POST.get('free-delivery')
+        on_stock = request.POST.get('on-stock')
+
+        if starting_price or ending_price:
+            products = Product.objects.filter(price__gte=starting_price, price__lte=ending_price)
+
+        if category:
+            category = Category.objects.get(name=category)
+            products  = products.filter(category=category)
+        if color:
+            products = products.filter(color=color)
+        if size:
+            products = products.filter(size=size)
+        if on_sell:
+            products = products.filter(on_sell=True)
+        if free_delivery:
+            products = products.filter(delivery=True)
+        if on_stock:
+            products = products.filter(on_stock=True)
+
+
     else:
-        products = Product.objects.filter(category=id).all().order_by('-date')
-        category = Category.objects.get(id=id)
+        if id == '-1':
+            products = Product.objects.all().order_by('-date')
+            category = "All"
+        else:
+            products = Product.objects.filter(category=id).all().order_by('-date')
+            category = Category.objects.get(id=id)
 
     paginator = Paginator(products, 20)  # Show 20 product per page.
     page_number = request.GET.get('page')

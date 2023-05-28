@@ -19,6 +19,71 @@ h1{
 	font-size: 50px;
 	margin: 0px;
 }
+
+.filter{
+	width: 90%;
+	margin: auto;
+	height: 80px;
+	border: 0.01cm solid lightgray;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.filter-container{
+	padding: 30px;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+.price-inputs{
+	display: flex;
+	gap: 10px;
+	background-color: #EDEDED;
+	padding: 10px;
+}
+input{
+	border: 0.01cm solid lightgray;
+	padding: 5px 10px;
+}
+.filter-btn{
+	font-size: 13px;
+	text-decoration: none;
+	background-color: #111;
+ 	color: white;;
+	padding: 15px;
+	font-family: 'Arial', sans-serif;
+	transition: .3s;
+	border: none;
+}
+.filter-btn:hover{
+	color: #111;
+	background-color: #EDEDED;
+	transition: .3s;
+	cursor: pointer;
+}
+select{
+	color: #111;
+	background-color: #EDEDED;
+	padding: 13px;
+	font-family: 'Arial', sans-serif;
+	transition: .3s;
+	border: none;
+	font-size: 15px;
+}
+.checkbox-container{
+	color: #111;
+	background-color: #EDEDED;
+	padding: 13px;
+	font-family: 'Arial', sans-serif;
+	transition: .3s;
+	border: none;
+	font-size: 13px;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
 .product-container{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
