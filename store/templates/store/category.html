@@ -5,11 +5,12 @@
 	<div class="products">
 		<h1>Products</h1>
 		<div class="filter">
-			<div class="filter-container">
+			<form method="POST" action="/category/-1/" name="filter-form" class="filter-container">
+				{% csrf_token %}
 				<select name="category">
 					<option selected disabled> Categories </option>
 					{% for category in categories %} 
-						<option>{{ category }}</option>
+						<option value={{ category }}>{{ category }}</option>
 					{% endfor %}
 				</select>
 				<select name="colors">
@@ -30,24 +31,31 @@
 					<option value="xxl"> XXL </option>
 				</select>
 				<div class='price-inputs'>
-          <input type="number" placeholder="Starting price"/>
+          <input name="starting-price" type="number" placeholder="Starting price"/>
           <p>to</p>
-          <input type="number" placeholder="Ending price"/>
-          <button class='price-filter-btn'>GO</button>
+          <input name="ending-price" type="number" placeholder="Ending price"/>
         </div>
-				<div class="on-sell">
-					<input type="checkbox" id="checkbox">
-					<label> On sell </label>
+				<div class="checkbox-container">
+					<div class="on-sell">
+						<input name="on-sell" type="checkbox" id="checkbox">
+						<label> On sell </label>
+					</div>
+					<div class="free-delivery">
+						<input name="free-delivery" type="checkbox" id="checkbox">
+						<label> Free delivery </label>
+					</div>
+					<div class="on-stock">
+						<input name="on-stock" type="checkbox" id="checkbox">
+						<label> On stock </label>
+					</div>
 				</div>
-				<div class="free-delivery">
-					<input type="checkbox" id="checkbox">
-					<label> Free delivery </label>
-				</div>
-				<div class="on-stock">
-					<input type="checkbox" id="checkbox">
-					<label> On sell </label>
-				</div>
-			</div>
+				<button type="submit" class='filter-btn'> Apply Filter</button>
+				<script>
+					if ( window.history.replaceState ) {
+						window.history.replaceState( null, null, window.location.href );
+					}
+					</script>
+			</form>
 		</div>
 		<div class="product-container">
 			{% for product in products %}

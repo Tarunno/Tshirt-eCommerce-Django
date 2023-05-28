@@ -1,25 +1,22 @@
 # Tshirt-eCommerce-Django
-#### This site is a prototype of online Tshirt shop. 
-## Features:
-#### 1. Login and signup.
-#### 2. add product to your cart without login by using cookies.
-#### 3. customizable cart.
-#### 4. admin can add, delete and update products.
-#### 5. Rating and reviewing products.
-#### 6. Search products and see products based on category.
-
-## Home page:
+An application for online Tshirt shop. 
+### Home page:
 ![](GIF/home.gif)
-## Front-end Features:
-#### 1. parallax effect.
-#### 2. JavaScript fatch API for smooth experience.
-#### 3. Core html, css, js.
+### Order custom tshirt:
+![](GIF/custom-tshirt.gif)
+### Product Filtering
+![](GIF/filter.gif)
+### Cart
+![](GIF/add-cart.gif)
 
-## Product:
-![](GIF/product.gif)
-## Back-end features:
-#### 1. Django
-#### 2. JSON
-#### 3. SQLite3 database
+## Features:
+#### 1. authentication.
+#### 2. add product to your cart without login by using cookies.
+#### 3. order custom Tshirt.
+#### 4. customizable cart.
+#### 5. admin can add, delete and update products.
+#### 6. Rating and reviewing products.
+#### 7. Search products and see products based on category.
+#### 8. product filtering.
 
-# Super user: Tshirt
+super user: Tshirt
