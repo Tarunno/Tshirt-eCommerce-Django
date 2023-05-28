@@ -4,6 +4,51 @@
 <link rel="stylesheet" href="{% static 'css/category.css' %}">
 	<div class="products">
 		<h1>Products</h1>
+		<div class="filter">
+			<div class="filter-container">
+				<select name="category">
+					<option selected disabled> Categories </option>
+					{% for category in categories %} 
+						<option>{{ category }}</option>
+					{% endfor %}
+				</select>
+				<select name="colors">
+					<option selected disabled> Colors </option>
+					<option value="red"> Red </option>
+					<option value="black"> Black </option>
+					<option value="blue"> Blue </option>
+					<option value="green"> Green </option>
+					<option value="white"> White </option>
+					<option value="gray"> Gray </option>
+				</select>
+				<select name="sizes">
+					<option selected disabled> Sizes </option>
+					<option value="s"> S </option>
+					<option value="m"> M </option>
+					<option value="l"> L </option>
+					<option value="xl"> XL </option>
+					<option value="xxl"> XXL </option>
+				</select>
+				<div class='price-inputs'>
+          <input type="number" placeholder="Starting price"/>
+          <p>to</p>
+          <input type="number" placeholder="Ending price"/>
+          <button class='price-filter-btn'>GO</button>
+        </div>
+				<div class="on-sell">
+					<input type="checkbox" id="checkbox">
+					<label> On sell </label>
+				</div>
+				<div class="free-delivery">
+					<input type="checkbox" id="checkbox">
+					<label> Free delivery </label>
+				</div>
+				<div class="on-stock">
+					<input type="checkbox" id="checkbox">
+					<label> On sell </label>
+				</div>
+			</div>
+		</div>
 		<div class="product-container">
 			{% for product in products %}
 				<div class="item-products">

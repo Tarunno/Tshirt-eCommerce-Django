@@ -19,6 +19,24 @@ h1{
 	font-size: 50px;
 	margin: 0px;
 }
+
+.filter{
+	width: 90%;
+	margin: auto;
+	height: 80px;
+	border: 0.01cm solid lightgray;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 15px;
+}
+.filter-container{
+	padding: 30px;
+}
+.price-inputs{
+
+}
+
 .product-container{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
