@@ -1,3 +1,4 @@
+virtualenv==20.21.0
 wheel==0.35.1
 Django==4.2
 django-ckeditor==6.0.0
